@@ -1,0 +1,112 @@
+GET http://localhost:3000
+
+###SEND FETCH SONGS REQUEST
+GET http://localhost:3000/songs?page=1&limit=2
+
+###FIND SONGS REQUEST
+GET http://localhost:3000/songs/
+
+###CREATE NEW SONGS REQUEST
+POST http://localhost:3000/songs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indlc3RAZ21haWwuY29tIiwidXNlcklkIjoyMiwiYXJ0aXN0SWQiOjE0LCJpYXQiOjE3NDM0NTE5MjMsImV4cCI6MTc0MzUzODMyM30.wBXMBmTjHGPalriQix7UZRIOd0qf9w22xWK0C5U81Ck
+
+{
+"title":" Love Again",
+"artists":["14"], 
+"releaseDate":"2020-02-10",
+"duration": "03:04",
+"lyrics":"Cause ev bitches ain't never been cool, writin' testamentaintin' pictures, put me in the Louvre, that'==============================================================================================nd celebrity do not mean integrity, you fool'm a good man, shakin' hand, firm grip ruleeventy-two ways, lost ten, ballin' with the flure than two M's for a show, but add another two, hmmil' Man-Man, the big mans, the GT diamond flippin' the kickstand, ooh"
+}
+
+###UPDATE SONGS REQUEST
+PUT http://localhost:3000/songs/2
+Content-Type: application/json
+
+{
+"title":" out murrals",
+
+    
+"releasedDate":"2024-02-16",
+"duration": "02:14",
+"lyrics":"Keephand, i something go, knocked out only for a night"
+}
+
+###DELETE SONGS REQUEST
+DELETE http://localhost:3000/songs/4
+
+###CREATE NEW PLAYLIST
+POST http://localhost:3000/playlists
+Content-Type: application/json
+
+{
+    "name": "wow",
+    "songs": [
+        12
+    ],
+    "user": 8
+}
+
+###signup user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName":"tired",
+    "lastName":"oyye",
+    "email":"ghe@gmail.com",
+    "password":"11235"
+}
+
+###signup Artist
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName":"kanye",
+    "lastName":"west",
+    "email":"west@gmail.com",
+    "password":"012345"
+}
+
+###Login artist
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    
+    "email":"west@gmail.com",
+    "password":"012345"
+}
+
+
+
+###LOGIN USER
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email":"vert@gmail.com",
+    "password":"1122334455"
+}
+
+###eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vaUBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTc0MjMyNzQwNiwiZXhwIjoxNzQyNDEzODA2fQ.3GvlSkXJWAz9051h-eFwTC7ifX9cNoT7D6KhkD4mjWo
+
+###profile
+GET http://localhost:3000/profile
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indlc3RAZ21haWwuY29tIiwidXNlcklkIjoyMiwiYXJ0aXN0SWQiOjE0LCJpYXQiOjE3NDM0NTE1MzQsImV4cCI6MTc0MzUzNzkzNH0._OUbXOhcL1BfBhmxFVnQGWVODImJsN7Mpf1XfR45sY0
+
+
+###Enable 2FA
+GET http://localhost:3000/auth/enable-2fa
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQzNzE1NTEzLCJleHAiOjE3NDM4MDE5MTN9.QrXC_4RDDtmHFSJVhBVwgbue9K2rABAY4z1X8VSimzs
+
+
+###validate
+POST http://localhost:3000/auth/validate-2fa
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQzNzE1NTEzLCJleHAiOjE3NDM4MDE5MTN9.QrXC_4RDDtmHFSJVhBVwgbue9K2rABAY4z1X8VSimzs
+Content-Type: application/json
+
+{
+    "token":"074857"
+}
