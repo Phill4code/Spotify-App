@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class LoginDTO {
-    static password(password: any, password1: string) {
+    static password() {
         throw new Error('Method not implemented.');
     }
 

@@ -52,11 +52,13 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "firstName":"tired",
-    "lastName":"oyye",
-    "email":"ghe@gmail.com",
-    "password":"11235"
+    "firstName":"john",
+    "lastName":"doe",
+    "email":"john13@gmail.com",
+    "password":"123456"
 }
+
+###apikey john13 temp: 19555867-956d-46e2-8ff1-77d4e1cffb4f
 
 ###signup Artist
 POST http://localhost:3000/auth/signup
@@ -99,10 +101,10 @@ Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indlc3RA
 
 ###Enable 2FA
 GET http://localhost:3000/auth/enable-2fa
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQzNzE1NTEzLCJleHAiOjE3NDM4MDE5MTN9.QrXC_4RDDtmHFSJVhBVwgbue9K2rABAY4z1X8VSimzs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQ1NTE3MjU4LCJleHAiOjE3NDU2MDM2NTh9.suHyxw5AL3MI2RlrV_0q4Ty_2o3M6ydalxDpK_XZN3A
 
 
-###validate
+###validate 2fa token
 POST http://localhost:3000/auth/validate-2fa
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQzNzE1NTEzLCJleHAiOjE3NDM4MDE5MTN9.QrXC_4RDDtmHFSJVhBVwgbue9K2rABAY4z1X8VSimzs
 Content-Type: application/json
@@ -110,3 +112,12 @@ Content-Type: application/json
 {
     "token":"074857"
 }
+
+###Disable 2FA
+GET http://localhost:3000/auth/disable-2fa
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRAZ21haWwuY29tIiwidXNlcklkIjoyMSwiaWF0IjoxNzQzNzE1NTEzLCJleHAiOjE3NDM4MDE5MTN9.QrXC_4RDDtmHFSJVhBVwgbue9K2rABAY4z1X8VSimzs
+
+
+###ACCESS PROFILE
+GET http://localhost:3000/auth/profile
+Authorization: Bearer 19555867-956d-46e2-8ff1-77d4e1cffb4f

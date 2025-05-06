@@ -7,6 +7,7 @@ import { UsersModule } from 'src/users/users.module';
 import { authConstants } from './auth.constants';
 import { JwtStrategy } from './jwt-strategy';
 import { ArtistsModule } from 'src/artists/artists.module';
+import { apikeystrategy } from './api-key-strategy';
 
 @Module({
     imports:[UsersModule,  JwtModule.register({
@@ -17,7 +18,7 @@ import { ArtistsModule } from 'src/artists/artists.module';
 }),
 ArtistsModule
 ],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, apikeystrategy],
   controllers: [AuthController],
   exports: [AuthService]
 })

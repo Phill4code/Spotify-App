@@ -28,7 +28,8 @@ twoFASecret: string;
 @Column({default: false, type: 'boolean'})
 enable2FA: boolean;
 
-
+@Column()
+apikey: string;
 
 
 /**A user can create many playlists */

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Controller, Body, Post, Get, UseGuards,Request } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
@@ -5,11 +6,12 @@ import { User } from 'src/users/user.entity';
 import { CreateUserDTO } from 'src/users/dto/create-user.dto';
 import { LoginDTO } from './dto/login.dto';
 import { AuthService } from './auth.service';
-import { JwtAuthGaurd } from './jwt-guard';
+import { JwtAuthGuard } from './jwt-guard';
 import { Enable2FAType } from './types';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {  ValidateTokenDTO } from './dto/validate-token.dto';
-//import { Console } from 'console';
+import { UpdateResult } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
+
 
 
 
@@ -39,7 +41,7 @@ export class AuthController {
     };
 
     @Get('enable-2fa')
-    @UseGuards(JwtAuthGaurd)
+    @UseGuards(JwtAuthGuard)
     enable2FA(
         @Request()
         req,
@@ -49,7 +51,7 @@ export class AuthController {
     };
 
     @Post('validate-2fa') 
-    @UseGuards(JwtAuthGaurd)
+    @UseGuards(JwtAuthGuard)
     validate2FA(
         @Request()
         req,
@@ -61,4 +63,28 @@ export class AuthController {
             ValidateTokenDTO.token
         );
     }
+    @Get('disable-2fa')
+    @UseGuards(JwtAuthGuard)
+    disable2FA (
+        @Request()
+    req,
+    ): Promise<UpdateResult> {
+        return this.authService.disable2FA(req.user.userId);
+    }
+    @Get('Profile')
+    @UseGuards (AuthGuard('bearer'))
+    getprofile(
+        @Request()
+        req,
+    ) {
+        delete req.user.password;
+        return {
+            msg: 'Authenticated by apikey',
+            user: req.user,
+        };
+    }
+
+
 }
+
+///migrations next
