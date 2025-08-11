@@ -64,4 +64,5 @@ export class UsersService {
     async findByApiKey(apikey:string): Promise <User> {
         return this.userRepository.findOneBy({apikey})
     };
+    
 }

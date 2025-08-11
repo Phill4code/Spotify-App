@@ -6,7 +6,7 @@ import {
   Entity,
   OneToOne,
   JoinColumn,
-  OneToMany,
+  OneToMany
 } from 'typeorm';
 
 @Entity ('artists')
@@ -21,4 +21,6 @@ export class Artist {
 
     @OneToMany(() => Song, (song) => song.artists)
     songs: Song[];
+    name: string;
+    static user: User;
 }

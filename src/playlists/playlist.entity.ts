@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Song } from 'src/songs/song.entity';   
 import { User } from 'src/users/user.entity';
 import {Column, Entity, ManyToOne, OneToMany,PrimaryGeneratedColumn } from 'typeorm';
@@ -9,11 +10,6 @@ export class Playlist {
 
     @Column()
     name: string;
-
-    
-   
-
-
 
 /**Each playlist will have multiple songs */
 @OneToMany(() => Song, (song) => song.playlist)

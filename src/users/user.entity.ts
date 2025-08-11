@@ -32,8 +32,9 @@ enable2FA: boolean;
 apikey: string;
 
 
+
 /**A user can create many playlists */
 @OneToMany(()=>Playlist, (playlist)=>playlist.user)
 playlist:Playlist[];
 
-}
+};

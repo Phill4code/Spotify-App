@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,6 +16,9 @@ import { PlayListModule } from './playlists/playlists.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from 'src/users/users.module';
 import { ArtistsModule } from './artists/artists.module';
+import { dataSourceOptions } from 'db/data-source';
+import { SeedModule } from './seed/seed.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 const devconfig = {port: 3000};
@@ -22,26 +26,19 @@ const proconfig = {port: 4000};
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'spotify_clone',
-      host: 'localhost',
-      port:5432,
-      username: 'postgres',
-      password: 'root',
-      entities: [Song, Artist, User, Playlist],
-      synchronize: true,
+    ConfigModule.forRoot({
+       envFilePath: ['.env.development', '.env.production'],
+       isGlobal:true,
     }),
-   
+    TypeOrmModule.forRoot(dataSourceOptions),   
     SongsModule,
     PlayListModule,
     AuthModule,
     UsersModule,
-    ArtistsModule, 
-   
-    
-    
+    ArtistsModule,
+    SeedModule,     
   ],
+  
   controllers: [AppController],
   providers: [AppService,
     {

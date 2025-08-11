@@ -1,22 +1,22 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-//mport { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { LoginDTO } from './dto/login.dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ArtistsService } from 'src/artists/artists.service';
-//import { Artist } from 'src/artists/artists.entity';
 import { Enable2FAType, PayloadType } from './types';
 import * as speakeasy from 'speakeasy'
 import { UpdateResult } from 'typeorm';
 import { User } from 'src/users/user.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
     constructor (private userService: UsersService,
                 private jwtService: JwtService,
-                private artistsService: ArtistsService
+                private artistsService: ArtistsService,
+                private configService: ConfigService,
     )  {}
 
     async login(loginDTO:LoginDTO): Promise<{ accessToken: string} | {validate2FA:string; message:string} > {
@@ -75,9 +75,6 @@ export class AuthService {
             const user = await this.userService.findById(userId);
             //get the 2fasecret
 
-
-
-            
             //verify key wih token by calling the speakeasy verify method
             const verified = speakeasy.totp.verify({
                 secret:user.twoFASecret,
@@ -102,5 +99,8 @@ export class AuthService {
     async validateUserByApiKey(apiKey: string): Promise<User> {
         return this.userService.findByApiKey(apiKey);
     }
-}
+    getEnvVariable () {
+        return this.configService.get<number>('port')
+    }
+};
 
